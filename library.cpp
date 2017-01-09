@@ -3,8 +3,8 @@
 //  Copyright © 2017 SMediaLink. All rights reserved.
 //
 
-
-#include "library.h"
+#include <mysql.h>
+#include <my_global.h>
 #include "algo.h"
 #include <codecvt>
 
@@ -33,7 +33,7 @@ void zinshtein_deinit(UDF_INIT *initid) {
 }
 
 longlong zinshtein(UDF_INIT *initid, UDF_ARGS *args, char *is_null, char *error) {
-    std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
     std::wstring str1 = converter.from_bytes(args->args[0]);
     std::wstring str2 = converter.from_bytes(args->args[1]);
     return zinshtein(&str1, &str2);
