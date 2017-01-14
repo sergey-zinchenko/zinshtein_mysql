@@ -23,6 +23,10 @@ my_bool zinshtein_init(UDF_INIT *initid, UDF_ARGS *args, char *message) {
             return 1;
         }
     }
+    if (args->args[args->arg_count - 1] == NULL) {
+        strcpy(message, "ZINSHTEIN() requires last one argument not to be null");
+        return 1;
+    }
     initid->max_length = 3;
     initid->maybe_null = 0;
     return 0;
@@ -30,9 +34,10 @@ my_bool zinshtein_init(UDF_INIT *initid, UDF_ARGS *args, char *message) {
 
 longlong zinshtein(UDF_INIT *initid, UDF_ARGS *args, char *is_null, char *error) {
     std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-    std::wstring str1 = converter.from_bytes(args->args[0]);
-    for (long i = 1; i < args->arg_count - 1; i++) {
-        str1 += converter.from_bytes(args->args[i]);
+    std::wstring str1 = L"";
+    for (long i = 0; i < args->arg_count - 1; i++) {
+        if (args->args[i] != NULL)
+            str1 += converter.from_bytes(args->args[i]);
     }
     std::wstring str2 = converter.from_bytes(args->args[args->arg_count - 1]);
     return zinshtein(&str1, &str2);
