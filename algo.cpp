@@ -5,6 +5,7 @@
 
 #include "algo.h"
 #include <vector>
+#include <algorithm>
 
 class Match {
 public:

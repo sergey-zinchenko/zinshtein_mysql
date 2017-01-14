@@ -7,6 +7,7 @@
 #include <my_global.h>
 #include "algo.h"
 #include <codecvt>
+#include <locale>
 
 #ifdef __cplusplus
 extern "C" {
