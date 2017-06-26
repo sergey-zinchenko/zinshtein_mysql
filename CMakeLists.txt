@@ -18,6 +18,6 @@ set(CMAKE_CXX_FLAGS -Ofast)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES library.cpp algo.cpp algo.h)
+set(SOURCE_FILES library.cpp algo.cpp algo.h ertranslit.cpp ertranslit.h)
 
 add_library(zinshtein SHARED ${SOURCE_FILES})
