@@ -6,6 +6,7 @@
 #include <mysql.h>
 #include <my_global.h>
 #include <codecvt>
+#include <locale>
 #include "algo.h"
 #include "ertranslit.h"
 
