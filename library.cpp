@@ -8,6 +8,7 @@
 #include <codecvt>
 #include <functional>
 #include <locale>
+#include <algorithm>
 #include "algo.h"
 #include "ertranslit.h"
 
