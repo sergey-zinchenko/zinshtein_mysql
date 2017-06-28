@@ -6,6 +6,9 @@
 #include "algo.h"
 #include <vector>
 #include <algorithm>
+#include <functional>
+#include <locale>
+
 
 class Match {
 public:
@@ -74,17 +77,11 @@ inline long step(Matches *matches) {
 
 long zinshtein(std::wstring *str1, std::wstring *str2) {
 
-    str1->erase(std::remove_if(str1->begin(), str1->end(), ::isspace), str1->end());
-    std::transform(str1->begin(), str1->end(), str1->begin(), ::tolower);
-    str2->erase(std::remove_if(str2->begin(), str2->end(), ::isspace), str2->end());
-    std::transform(str2->begin(), str2->end(), str2->begin(), ::tolower);
-
     if (str2->size() > str1->size()) {
         std::wstring *tempStr = str2;
         str2 = str1;
         str1 = tempStr;
     }
-
 
     long lngPtnCount = str1->size() - 1, shrtPtnCount = str2->size() - 1;
 
