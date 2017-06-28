@@ -42,7 +42,11 @@ longlong zinshtein(UDF_INIT *initid, UDF_ARGS *args, char *is_null, char *error)
             str1 += converter.from_bytes(args->args[i]);
     }
     std::wstring str2 = converter.from_bytes(args->args[args->arg_count - 1]);
-    return zinshtein(retranslit(&str1), retranslit(&str2));
+    std::wstring *ps1 = retranslit(&str1), *ps2 = retranslit(&str2);
+    longlong result = zinshtein(ps1, ps2);
+    delete ps1;
+    delete ps2;
+    return result;
 }
 
 #ifdef __cplusplus
